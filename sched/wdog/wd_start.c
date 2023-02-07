@@ -147,10 +147,11 @@ static inline void wd_expiration(void)
                 DEBUGPANIC();
                 break;
 
+#if CONFIG_MAX_WDOGPARMS < 1
               case 0:
                 (*((wdentry0_t)(wdog->func)))(0);
                 break;
-
+#endif
 #if CONFIG_MAX_WDOGPARMS > 0
               case 1:
                 (*((wdentry1_t)(wdog->func)))(1, wdog->parm[0]);
